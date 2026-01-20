@@ -1,8 +1,10 @@
 # Linxdot-MinimalDocker
-A minimal Buildroot system image for Linxdot RK3566 Helium miners (LD1001)
+This is a minimal Buildroot image for Linxdot RK3566 Helium miners (LD1001). It is based on the crankkos image, with all crankos features removed. A clean docker-compose is used instead. This re-enables Helium mining on the devices, which are currently inoperational due to Linxdot going out of business. 
 
 ### Credits
 - [crankkio](https://github.com/crankkio) - Reverse engineering the Linxdot and creating the buildroot image.
+- [fernandodev/linxdot-rockchip-flash](https://github.com/fernandodev/linxdot-rockchip-flash) - Creating their linxdot flashing guide
+- [heliumdiy/sx1302_hal](https://github.com/heliumdiy/sx1302_hal) - Providing the sped up pktfwd image.
 
 ## Manual Configuration
 
