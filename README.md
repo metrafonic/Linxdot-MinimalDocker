@@ -139,7 +139,9 @@ sudo rkdeveloptool rd
 Reset Device OK.
 ```
 
-### Configure Image (root password and wifi):
+## Using the image
+
+### WiFi Configuration:
 1. SSH into the device and set a password. Ignore the readonly errors. The root password is `crankk`
 ```
 ssh root@x.x.x.x
@@ -156,4 +158,30 @@ network={
     psk="xxxx"
 }
 ```
-3. Additional startup scripts can be added to `/data/etc/userinit.sh`
+3. Settings are applied after reboot
+
+### Helium animal name:
+You can check the helium animal name by running the following command:
+```
+docker exec miner helium_gateway key info
+```
+
+### Setup Tailscale:
+You can run tailscale on the device too. Just replace the `TS_AUTHKEY` value. Persists reboots
+```
+docker run -d \
+  --name tailscaled \
+  --restart always \
+  --network host \
+  --cap-add NET_ADMIN \
+  --cap-add NET_RAW \
+  -e TS_AUTHKEY="tskey-auth-xxxxxxxx" \
+  -e TS_EXTRA_ARGS="--advertise-exit-node" \
+  -e TS_STATE_DIR="/var/lib/tailscale" \
+  -v /var/lib:/var/lib \
+  -v /dev/net/tun:/dev/net/tun \
+  tailscale/tailscale:latest
+```
+### Additional scripts
+
+Additional startup scripts can be added to `/data/etc/userinit.sh`
