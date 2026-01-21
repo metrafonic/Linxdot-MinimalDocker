@@ -165,6 +165,10 @@ You can check the helium animal name by running the following command:
 ```
 docker exec miner helium_gateway key info
 ```
+Use can use this info to set the hostname to the animal name:
+```
+docker exec miner helium_gateway key info | jq -r .name > /data/etc/hostname
+```
 
 ### Setup Tailscale:
 You can run tailscale on the device too. Just replace the `TS_AUTHKEY` value. Persists reboots
